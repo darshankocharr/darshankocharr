@@ -1,0 +1,1663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps Engineer Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e88e5;
+            --secondary: #0d47a1;
+            --dark: #121212;
+            --light: #f5f5f5;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+            --gray: #757575;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styling */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            background-color: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .header.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            color: var(--light);
+        }
+
+        .logo span {
+            color: var(--light);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .burger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .burger div {
+            width: 25px;
+            height: 3px;
+            background-color: var(--light);
+            margin: 5px;
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(30, 136, 229, 0.3), rgba(13, 71, 161, 0.3));
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 650px;
+            animation: fadeIn 1s ease;
+        }
+
+        .hero-greeting {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 10px;
+            animation: slideInLeft 1s ease;
+        }
+
+        .hero-title {
+            font-size: 60px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            animation: slideInLeft 1.2s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            margin-bottom: 30px;
+            animation: slideInLeft 1.4s ease;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            animation: slideInLeft 1.6s ease;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary);
+            color: var(--light);
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            margin-left: 15px;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary);
+        }
+
+        .hero-img {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45%;
+            animation: fadeIn 1.5s ease;
+            z-index: -1;
+        }
+
+        /* About Section */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .about-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 50px;
+        }
+
+        .about-img {
+            width: 40%;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            animation: pulse 2s infinite;
+        }
+
+        .about-img::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100%;
+            height: 100%;
+            border: 5px solid var(--primary);
+            border-radius: 10px;
+            z-index: -1;
+        }
+
+        .about-img img {
+            width: 100%;
+            border-radius: 10px;
+            display: block;
+        }
+
+        .about-content {
+            width: 55%;
+        }
+
+        .about-info {
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .skill {
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 8px 16px;
+            border-radius: 30px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .skill:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        /* Stats Section */
+        .stats {
+            background-color: rgba(30, 136, 229, 0.1);
+            padding: 80px 0;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-icon {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .stat-counter {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .stat-title {
+            font-size: 18px;
+            color: var(--gray);
+        }
+
+        /* Services Section */
+        .services-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 30px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 0;
+            background-color: var(--primary);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-card:hover::before {
+            height: 100%;
+            width: 100%;
+            background-color: rgba(30, 136, 229, 0.1);
+        }
+
+        .service-icon {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .service-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .service-description {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        /* Projects Section */
+        .projects-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .project-card {
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            height: 250px;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.1);
+        }
+
+        .project-title {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .project-tech span {
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .project-links {
+            display: flex;
+        }
+
+        .project-link {
+            color: var(--light);
+            background-color: var(--primary);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            transition: var(--transition);
+        }
+
+        .project-link:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background-color: rgba(30, 136, 229, 0.1);
+        }
+
+        .testimonials-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            padding: 30px 0;
+        }
+
+        .testimonial-wrapper {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .testimonial {
+            min-width: 100%;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .testimonial-content {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 30px;
+            position: relative;
+        }
+
+        .testimonial-content::before {
+            content: '\201C';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 80px;
+            color: rgba(30, 136, 229, 0.3);
+            font-family: serif;
+        }
+
+        .testimonial-text {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .author-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .testimonial-btn {
+            background-color: var(--primary);
+            color: var(--light);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .testimonial-btn:hover {
+            background-color: var(--secondary);
+        }
+
+        .testimonial-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .dot.active {
+            background-color: var(--primary);
+        }
+
+        /* Contact Section */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(30, 136, 229, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary);
+            font-size: 20px;
+            transition: var(--transition);
+        }
+
+        .contact-item:hover .contact-icon {
+            background-color: var(--primary);
+            color: var(--light);
+        }
+
+        .contact-detail h4 {
+            margin-bottom: 5px;
+        }
+
+        .contact-detail p, .contact-detail a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-detail a:hover {
+            color: var(--primary);
+        }
+
+        .contact-form {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 5px;
+            color: var(--light);
+            transition: var(--transition);
+        }
+
+        .form-input:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .form-input::placeholder {
+            color: var(--gray);
+        }
+
+        textarea.form-input {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary);
+            color: var(--light);
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            background-color: var(--secondary);
+        }
+
+        /* Footer Section */
+        .footer {
+            background-color: var(--dark);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .footer-text {
+            color: var(--gray);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .footer-title {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--primary);
+            color: var(--light);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .copyright {
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        .copyright a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 1024px) {
+            .hero-title {
+                font-size: 50px;
+            }
+            
+            .hero-img {
+                width: 40%;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                right: 0;
+                top: 70px;
+                height: calc(100vh - 70px);
+                background-color: var(--dark);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                width: 0;
+                overflow: hidden;
+                transition: var(--transition);
+                padding-top: 50px;
+            }
+            
+            .nav-active {
+                width: 70%;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .burger {
+                display: block;
+            }
+            
+            .toggle .line1 {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+            
+            .toggle .line2 {
+                opacity: 0;
+            }
+            
+            .toggle .line3 {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+            
+            .hero {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+            }
+            
+            .hero-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 50px;
+            }
+            
+            .hero-title {
+                font-size: 40px;
+            }
+            
+            .hero-img {
+                position: relative;
+                width: 70%;
+                margin-top: 50px;
+                transform: translateY(0);
+                order: 2;
+                display: none;
+            }
+            
+            .about-wrapper {
+                flex-direction: column;
+            }
+            
+            .about-img {
+                width: 80%;
+                margin-bottom: 30px;
+            }
+            
+            .about-content {
+                width: 100%;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .hero-title {
+                font-size: 32px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .btn {
+                display: block;
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            
+            .btn-secondary {
+                margin-left: 0;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .stat-counter {
+                font-size: 36px;
+            }
+            
+            .stat-title {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">Dev<span>Ops</span></a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <p class="hero-greeting">Hello, I'm</p>
+                <h1 class="hero-title">Alex Johnson</h1>
+                <h2 class="hero-subtitle">Senior DevOps Engineer</h2>
+                <p class="hero-description">I specialize in building and optimizing the infrastructure and deployment processes for software applications. With expertise in cloud technologies, automation, and CI/CD pipelines, I help organizations deliver software faster and more reliably.</p>
+                <div class="hero-btns">
+                    <a href="#contact" class="btn">Hire Me</a>
+                    <a href="#projects" class="btn btn-secondary">View Work</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Clients Say</h2>
+            <div class="testimonials-container">
+                <div class="testimonial-wrapper">
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">Alex completely transformed our deployment process. What used to take days now takes minutes, and our developers are much happier. His expertise in Kubernetes and CI/CD pipelines was exactly what we needed.</p>
+                            <div class="testimonial-author">
+                                <img src="/api/placeholder/50/50" alt="Sarah Johnson" class="author-img">
+                                <div class="author-info">
+                                    <h4>Sarah Johnson</h4>
+                                    <p>CTO, TechNova</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">Working with Alex on our cloud migration was a game-changer. He not only helped us move to AWS smoothly but also optimized our infrastructure, resulting in a 40% cost reduction. Highly recommend his services!</p>
+                            <div class="testimonial-author">
+                                <img src="/api/placeholder/50/50" alt="Michael Chen" class="author-img">
+                                <div class="author-info">
+                                    <h4>Michael Chen</h4>
+                                    <p>VP Engineering, CloudSoft</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">Alex's knowledge of DevSecOps practices helped us implement security throughout our pipeline without slowing down development. Our compliance audits are now a breeze, and we have much better confidence in our security posture.</p>
+                            <div class="testimonial-author">
+                                <img src="/api/placeholder/50/50" alt="Emily Rodriguez" class="author-img">
+                                <div class="author-info">
+                                    <h4>Emily Rodriguez</h4>
+                                    <p>Security Director, FinTech Solutions</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-nav">
+                    <div class="testimonial-btn prev-btn">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="testimonial-btn next-btn">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+                <div class="testimonial-dots">
+                    <div class="dot active"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services Section -->
+    <section class="section" id="services">
+        <div class="container">
+            <h2 class="section-title">Services I Offer</h2>
+            <div class="services-wrapper">
+                <div class="service-card">
+                    <i class="fas fa-cloud service-icon"></i>
+                    <h3 class="service-title">Cloud Infrastructure</h3>
+                    <p class="service-description">Design, implementation, and management of cloud infrastructure on AWS, Azure, and GCP. Expertise in designing scalable, secure, and cost-effective solutions.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-server service-icon"></i>
+                    <h3 class="service-title">Infrastructure as Code</h3>
+                    <p class="service-description">Automate infrastructure provisioning and management using Terraform, CloudFormation, and Ansible. Implement GitOps practices for infrastructure changes.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-code-branch service-icon"></i>
+                    <h3 class="service-title">CI/CD Pipeline Design</h3>
+                    <p class="service-description">Design and implementation of robust CI/CD pipelines using Jenkins, GitLab CI, GitHub Actions, or CircleCI to enable fast and reliable software delivery.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-cubes service-icon"></i>
+                    <h3 class="service-title">Container Orchestration</h3>
+                    <p class="service-description">Setup and management of Kubernetes clusters for container orchestration. Implementation of service mesh, auto-scaling, and advanced deployment strategies.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-chart-line service-icon"></i>
+                    <h3 class="service-title">Monitoring & Observability</h3>
+                    <p class="service-description">Implementation of comprehensive monitoring and observability solutions using Prometheus, Grafana, ELK Stack, and Datadog to ensure system reliability.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-shield-alt service-icon"></i>
+                    <h3 class="service-title">DevSecOps</h3>
+                    <p class="service-description">Integration of security practices into the DevOps lifecycle. Implementation of security scanning, compliance checks, and automated remediation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+        <div class="container">
+            <h2 class="section-title">My Recent Projects</h2>
+            <div class="projects-wrapper">
+                <div class="project-card">
+                    <img src="/api/placeholder/400/250" alt="E-commerce Platform" class="project-img">
+                    <div class="project-overlay">
+                        <h3 class="project-title">E-commerce Platform</h3>
+                        <div class="project-tech">
+                            <span>AWS</span>
+                            <span>Kubernetes</span>
+                            <span>Terraform</span>
+                            <span>Jenkins</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="/api/placeholder/400/250" alt="Microservices Migration" class="project-img">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Microservices Migration</h3>
+                        <div class="project-tech">
+                            <span>Docker</span>
+                            <span>Kubernetes</span>
+                            <span>Istio</span>
+                            <span>Azure</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="/api/placeholder/400/250" alt="CI/CD Pipeline" class="project-img">
+                    <div class="project-overlay">
+                        <h3 class="project-title">CI/CD Pipeline Automation</h3>
+                        <div class="project-tech">
+                            <span>GitLab CI</span>
+                            <span>Docker</span>
+                            <span>AWS</span>
+                            <span>ECS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="/api/placeholder/400/250" alt="Monitoring Solution" class="project-img">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Enterprise Monitoring</h3>
+                        <div class="project-tech">
+                            <span>Prometheus</span>
+                            <span>Grafana</span>
+                            <span>Alertmanager</span>
+                            <span>ELK</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="/api/placeholder/400/250" alt="Infrastructure Automation" class="project-img">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Infrastructure Automation</h3>
+                        <div class="project-tech">
+                            <span>Terraform</span>
+                            <span>Ansible</span>
+                            <span>Python</span>
+                            <span>GCP</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="/api/placeholder/400/250" alt="Serverless Application" class="project-img">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Serverless Application</h3>
+                        <div class="project-tech">
+                            <span>AWS Lambda</span>
+                            <span>API Gateway</span>
+                            <span>DynamoDB</span>
+                            <span>CloudFormation</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-wrapper">
+                <div class="about-img">
+                    <img src="/api/placeholder/400/400" alt="Alex Johnson, DevOps Engineer">
+                </div>
+                <div class="about-content">
+                    <p class="about-info">I am a passionate DevOps Engineer with over 8 years of experience in the industry. My journey started as a System Administrator, and I quickly developed a passion for automation and cloud technologies.</p>
+                    <p class="about-info">I specialize in designing and implementing robust CI/CD pipelines, container orchestration, and infrastructure as code. My goal is to bridge the gap between development and operations, enabling teams to deliver high-quality software at scale.</p>
+                    <p class="about-info">When I'm not automating deployments or optimizing infrastructure, you can find me contributing to open-source projects, mentoring junior engineers, or exploring the latest DevOps tools and practices.</p>
+                    <div class="skills">
+                        <span class="skill">Docker</span>
+                        <span class="skill">Kubernetes</span>
+                        <span class="skill">AWS</span>
+                        <span class="skill">Terraform</span>
+                        <span class="skill">Jenkins</span>
+                        <span class="skill">GitLab CI</span>
+                        <span class="skill">Ansible</span>
+                        <span class="skill">Prometheus</span>
+                        <span class="skill">Python</span>
+                        <span class="skill">Bash</span>
+                        <span class="skill">Linux</span>
+                        <span class="skill">Git</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <i class="fas fa-code stat-icon"></i>
+                    <h3 class="stat-counter" data-count="150">0</h3>
+                    <p class="stat-title">Projects Completed</p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-users stat-icon"></i>
+                    <h3 class="stat-counter" data-count="85">0</h3>
+                    <p class="stat-title">Satisfied Clients</p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-clock stat-icon"></i>
+                    <h3 class="stat-counter" data-count="8">0</h3>
+                    <p class="stat-title">Years Experience</p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-award stat-icon"></i>
+                    <h3 class="stat-counter" data-count="15">0</h3>
+                    <p class="stat-title">Certifications</p>
+                </div>
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-detail">
+                            <h4>Location</h4>
+                            <p>San Francisco, CA</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-detail">
+                            <h4>Email</h4>
+                            <p><a href="mailto:alex@devopsexpert.com">alex@devopsexpert.com</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-detail">
+                            <h4>Phone</h4>
+                            <p><a href="tel:+14155552671">+1 (415) 555-2671</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="contact-detail">
+                            <h4>Website</h4>
+                            <p><a href="https://www.devopsexpert.com">www.devopsexpert.com</a></p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-medium"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" class="form-input" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-input" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-input" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-input" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <a href="#" class="footer-logo">Dev<span>Ops</span></a>
+                    <p class="footer-text">Providing expert DevOps engineering services to help businesses deliver software faster, more reliably, and with greater efficiency.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-medium"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services">Cloud Infrastructure</a></li>
+                        <li><a href="#services">CI/CD Pipeline Design</a></li>
+                        <li><a href="#services">Container Orchestration</a></li>
+                        <li><a href="#services">Infrastructure as Code</a></li>
+                        <li><a href="#services">Monitoring & Observability</a></li>
+                        <li><a href="#services">DevSecOps</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2025 <a href="#">DevOps Portfolio</a>. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Navigation and UI functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Navigation
+            const burger = document.querySelector('.burger');
+            const nav = document.querySelector('.nav-links');
+            const navLinks = document.querySelectorAll('.nav-links li');
+
+            burger.addEventListener('click', () => {
+                // Toggle Navigation
+                nav.classList.toggle('nav-active');
+                
+                // Animate Links
+                navLinks.forEach((link, index) => {
+                    if (link.style.animation) {
+                        link.style.animation = '';
+                    } else {
+                        link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+                    }
+                });
+                
+                // Burger Animation
+                burger.classList.toggle('toggle');
+            });
+
+            // Shrink Navigation on Scroll
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('.header');
+                header.classList.toggle('scrolled', window.scrollY > 50);
+            });
+
+            // Smooth Scroll for Navigation Links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Close mobile menu if open
+                    if (nav.classList.contains('nav-active')) {
+                        nav.classList.remove('nav-active');
+                        burger.classList.remove('toggle');
+                    }
+                    
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Testimonial Slider
+            const testimonialWrapper = document.querySelector('.testimonial-wrapper');
+            const testimonials = document.querySelectorAll('.testimonial');
+            const dots = document.querySelectorAll('.dot');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            
+            let currentTestimonial = 0;
+            
+            // Set testimonial width
+            const setTestimonialWidth = () => {
+                testimonials.forEach(testimonial => {
+                    testimonial.style.minWidth = `${testimonialWrapper.clientWidth}px`;
+                });
+            };
+            
+            // Initialize testimonial slider
+            const initTestimonialSlider = () => {
+                setTestimonialWidth();
+                updateTestimonialPosition();
+            };
+            
+            // Update testimonial position
+            const updateTestimonialPosition = () => {
+                testimonialWrapper.style.transform = `translateX(-${currentTestimonial * 100}%)`;
+                
+                // Update active dot
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentTestimonial);
+                });
+            };
+            
+            // Next testimonial
+            const nextTestimonial = () => {
+                currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                updateTestimonialPosition();
+            };
+            
+            // Previous testimonial
+            const prevTestimonial = () => {
+                currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+                updateTestimonialPosition();
+            };
+            
+            // Event listeners for testimonial navigation
+            nextBtn.addEventListener('click', nextTestimonial);
+            prevBtn.addEventListener('click', prevTestimonial);
+            
+            // Event listeners for dots
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    currentTestimonial = index;
+                    updateTestimonialPosition();
+                });
+            });
+            
+            // Auto slide testimonials
+            setInterval(nextTestimonial, 5000);
+            
+            // Initialize testimonial slider
+            initTestimonialSlider();
+            
+            // Update testimonial slider on window resize
+            window.addEventListener('resize', initTestimonialSlider);
+
+            // Real-time Number Counter Animation
+            const counterElements = document.querySelectorAll('.stat-counter');
+            
+            // Check if an element is in viewport
+            const isInViewport = el => {
+                const rect = el.getBoundingClientRect();
+                return (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            };
+            
+            // Start counter animation when element is in viewport
+            const startCounterAnimation = () => {
+                counterElements.forEach(counter => {
+                    if (isInViewport(counter) && !counter.classList.contains('counted')) {
+                        counter.classList.add('counted');
+                        const target = parseInt(counter.getAttribute('data-count'));
+                        const duration = 2000; // 2 seconds
+                        const increment = Math.ceil(target / (duration / 16)); // 16ms per frame (60fps)
+                        let current = 0;
+                        
+                        const updateCounter = () => {
+                            current += increment;
+                            if (current >= target) {
+                                counter.textContent = target;
+                                return;
+                            }
+                            counter.textContent = current;
+                            requestAnimationFrame(updateCounter);
+                        };
+                        
+                        updateCounter();
+                    }
+                });
+            };
+            
+            // Check for counters on page load and scroll
+            window.addEventListener('scroll', startCounterAnimation);
+            startCounterAnimation();
+
+            // Form Submission
+            const contactForm = document.getElementById('contactForm');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form inputs
+                    const name = this.querySelector('input[type="text"]').value;
+                    const email = this.querySelector('input[type="email"]').value;
+                    const subject = this.querySelector('input[placeholder="Subject"]').value;
+                    const message = this.querySelector('textarea').value;
+                    
+                    // Here you would normally send the data to a server
+                    // But for this demo, we'll just show a success message
+                    alert(`Thank you, ${name}! Your message has been sent. I'll get back to you soon.`);
+                    
+                    // Reset form
+                    this.reset();
+                });
+            }
+
+            // Reveal animations on scroll
+            const revealElements = document.querySelectorAll('.service-card, .project-card, .stat-item, .about-img, .about-content');
+            
+            const revealOnScroll = () => {
+                revealElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementTop < windowHeight - 100) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            // Set initial styles
+            revealElements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            });
+            
+            // Check elements on page load and scroll
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll();
+        });
+    </script>
+
